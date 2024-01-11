@@ -1,6 +1,6 @@
-###Git Commands
-git add
-git push
-git commit -m "text"
-git pull
-git fetch
+### Git Commands
+git add </br>
+git push </br>
+git commit -m "text" </br>
+git pull </br>
+git fetch </br>
