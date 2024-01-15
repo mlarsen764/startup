@@ -8,7 +8,9 @@ Have you ever sat in Sacrament meeeting or Sunday School and heard an insight ab
 
 ### Design
 
+![Mock](scriptureinsights.png)
 
+Here's the main page which will display a list of topics, each with a dropdown that will show all entries that have been submitted for that topic.
 
 ### Key features
 
