@@ -1,3 +1,5 @@
+Elastic IP: 44.194.9.45
+
 # Scripture Insights
 
 ## Description deliverable
