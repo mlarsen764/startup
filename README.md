@@ -1,4 +1,4 @@
-scripsights.click
+scripsights.click </br>
 Elastic IP: 44.194.9.45
 
 # Scripture Insights
