@@ -29,8 +29,8 @@
     </header>
 
     <main>
+      <form action="/submit-form-endpoint" method="POST">  
         <label for="Gospel Topics">Gospel Topics</label>
-
         <select name="topics" id="topics">
           <option value="Atonement of Jesus Christ">Atonement of Jesus Christ</option>
           <option value="Gospel of Jesus Christ">Gospel of Jesus Christ</option>
@@ -40,14 +40,22 @@
           <option value="Hope">Hope</option>
           <option value="Charity">Charity</option>
         </select>
-
+        </br>
+        <p>Scripture Reference: book, chapter, verse (e.g. Isaiah 53:3-5)</p>
+        <textarea placeholder = "enter scripture reference"></textarea>
+        <p>Scripture Details: You can write the scripture, part of the scripture, or paraphrase!</p>
+        <textarea placeholder = "enter scripture details"></textarea>
+        <p>Scripture Insights: Why is this scripture important to you?</p>
+        <textarea placeholder = "enter scripture insights"></textarea>
+        <button type="submit">Submit Entry</button>
+      </form>  
     </main>
 
     <footer>
       <hr />
       <span class="text-reset">Author Name</span>
       <p>Matt Larsen</p>
-      <br />
+
     </footer>
   </body>
 </html>
