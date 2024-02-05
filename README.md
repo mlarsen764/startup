@@ -1,7 +1,15 @@
-scripsights.click </br>
-Elastic IP: 44.194.9.45
+##### scripsights.click
+##### startup.scripsights.click
+##### Elastic IP: 44.194.9.45
 
 # Scripture Insights
+
+### HTML Additions
+
+#### Created 3 webpages: one for login, one for "discovering" scripture entries and one for sharing scripture entries
+##### Login (index.html): simple welcome page for users to enter their login and password in order to access the rest of the website
+##### Discover: Users will see a variety of gospel topics. Pending database and websocket to allow for the submission and display of entries pertaining to each topic
+##### Share: Users can enter information into textboxes regarding favorite scriptures and insights regarding the scriptures. Currently the "Submit" button has no effect. Need Websocket and Database to store and display entries
 
 ## Description deliverable
 
