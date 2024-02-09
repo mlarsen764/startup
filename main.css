@@ -95,3 +95,23 @@ footer {
     padding: 1rem;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+    
+    .picture-box img {
+        max-width: 95%; /* Adjust for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    nav div a {
+        padding: 0.5rem; /* Reduce padding on small screens */
+    }
+    
+    form {
+        width: 95%; /* Allow form to take more screen width on small screens */
+    }
+}
