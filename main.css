@@ -91,6 +91,12 @@ form button {
     cursor: pointer;
 }
 
+#share form button {
+    width: 30%;
+    height: 40px;
+    margin-top: 20px;
+}
+
 form button:hover {
     background-color: #034f6d;
 }
@@ -107,10 +113,11 @@ footer {
 }
 
 textarea {
-    width: 100%;
+    width: 90%;
     height: 150px;
     padding: 10px;
     margin-bottom: 20px;
+    resize: none;
 }
 
 textarea.reference {
