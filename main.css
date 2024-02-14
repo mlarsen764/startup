@@ -140,6 +140,37 @@ textarea.reference {
     }
 }
 
+/* Discover Page */
+
+.collapsible-content {
+    display: none;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin: 0 20px;
+    padding: 0 10px;
+}
+  
+.collapsible-header {
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    background-color: #e7eff6;
+    color: #022c43;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin: 20px 0;
+    transition: background-color 0.2s ease;
+}
+  
+.collapsible-header:hover {
+    background-color: #ddd;
+}
+
+/* Share Page */
+
 #share {
     display: flex;
     flex-direction: row;
