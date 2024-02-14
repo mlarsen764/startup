@@ -53,19 +53,19 @@ nav div a:hover {
 }
 
 form {
-    background-color: #fff;
-    max-width: 400px;
     margin: 20px auto;
     padding: 20px;
+    background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
-#share form {
-    max-width: 90%;
+#login form {
+    max-width: 400px;
+
 }
 
-  form label {
+form label {
     display: block;
     margin-bottom: 5px;
 }
@@ -89,12 +89,6 @@ form button {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-}
-
-#share form button {
-    width: 30%;
-    height: 40px;
-    margin-top: 20px;
 }
 
 form button:hover {
@@ -144,4 +138,20 @@ textarea.reference {
     form {
         width: 95%; /* Allow form to take more screen width on small screens */
     }
+}
+
+#share {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#share form {
+    flex-grow: 1;
+}
+
+#share form button {
+    width: 30%;
+    height: 40px;
+    margin-top: 20px;
 }
