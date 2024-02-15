@@ -188,3 +188,13 @@ textarea.reference {
     height: 40px;
     margin-top: 20px;
 }
+
+@media (max-width: 768px) {
+    #share {
+        flex-direction: column;
+        align-items: center;
+    }
+    .picture-box {
+        margin: 20px 0;
+    }
+}
