@@ -197,4 +197,7 @@ textarea.reference {
     .picture-box {
         margin: 20px 0;
     }
+    textarea.reference {
+        width: 90%;
+    }
 }
