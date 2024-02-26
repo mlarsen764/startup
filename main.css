@@ -143,11 +143,12 @@ textarea.reference {
 /* Discover Page */
 
 .collapsible-content {
-    display: none;
     overflow: hidden;
     background-color: #f9f9f9;
     margin: 0 20px;
     padding: 0 10px;
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
 }
   
 .collapsible-header {
