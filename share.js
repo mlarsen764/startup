@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Placeholder for sending data to a server
       console.log('Entry to be submitted:', entryData);
+
+      form.reset();
       
       alert('Entry submitted! (not really, but when connected to a database it will!!)');
     });
