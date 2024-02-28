@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function login() {
-    const nameEl = document.querySelector("#name");
+    const nameEl = document.getElementById("name");
+    const passwordEl = document.getElementById("password")
     localStorage.setItem("userName", nameEl.value);
     window.location.href = "discover.html";
   }
