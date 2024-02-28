@@ -4,6 +4,18 @@
 
 # Scripture Insights
 
+### Javascript Deliverables
+
+- [x] - done - Prerequisite: Simon CSS deployed to your production environment
+- [x] - done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
+- [x] - done - Prerequisite: Notes in your startup Git repository README.md file
+- [x] - done - Added Javascript support for future login with username and password
+- [x] - done - Added Javascript for future database data for scripsight submissions
+- [x] - done - Added Javascript support for Websocket displaying entries on discover.html
+- [x] - done - Added Javascript for interaction logic: form submission, logging in, selecting collapsible lists
+
+### CSS Deliverables
+
 - [x] - done - Prerequisite: Simon CSS deployed to your production environment
 - [x] - done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
 - [x] - done - Prerequisite: Notes in your startup Git repository README.md file
