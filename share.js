@@ -28,6 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
       form.reset();
       
-      alert('Entry submitted! (not really, but when connected to a database it will!!)');
+      alert('Entry submitted! (not really, but when connected to a database it will be!!)');
     });
   });
