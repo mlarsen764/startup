@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   var collapsibleHeaders = document.querySelectorAll('.collapsible-header');
   collapsibleHeaders.forEach(function(header) {
+    // Click to expand collapsible header
     header.addEventListener('click', function() {
       this.classList.toggle('active');
       var content = this.nextElementSibling;

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('main#share form');
     
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the default form submission
+      event.preventDefault();
       
       // Gather form data
       const formData = new FormData(form);
