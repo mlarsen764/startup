@@ -1,0 +1,23 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "- [x] - done - Prerequisite: Simon CSS deployed to your production environment\r - [x] - done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page\r - [x] - done - Prerequisite: Notes in your startup Git repository README.md file\r - [x] - done - Added Javascript support for future login with username and password\r - [x] - done - Added Javascript for future database data for scripsight submissions\r - [x] - done - Added Javascript support for Websocket displaying entries on discover.html\r - [x] - done - Added Javascript for interaction logic: form submission, logging in, selecting collapsible lists",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlarsen764/startup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlarsen764/startup/issues"
+  },
+  "homepage": "https://github.com/mlarsen764/startup#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
