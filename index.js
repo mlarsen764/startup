@@ -21,7 +21,7 @@ apiRouter.get('/entries', (req, res) => {
             id: 1,
             topic: "Atonement of Jesus Christ",
             reference: "stuff",
-            details: "more stuff",
+            scripture: "more stuff",
             insights: "yeah",
             author: "me",
             anonymous: true

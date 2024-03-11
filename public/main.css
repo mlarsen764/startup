@@ -170,6 +170,23 @@ textarea.reference {
     background-color: #ddd;
 }
 
+.entry {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Slightly rounded corners for a softer look */
+    background-color: #f9f9f9; /* Light grey background */
+}
+  
+.entry-separator {
+    margin: 0 5px;
+    color: #666; /* Darker grey for the separator to make it subtle */
+}
+  
+.entry strong {
+    color: #333; /* Dark grey for text labels for better readability */
+}
+
 /* Share Page */
 
 #share {

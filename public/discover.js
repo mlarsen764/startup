@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         entryElement.innerHTML = `
           <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
           <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
-          <strong>Details:</strong> ${entry.details}<br>
+          <strong>Scripture:</strong> ${entry.scripture}<br>
           <strong>Insights:</strong> ${entry.insights}<br>
           <hr>
         `;
