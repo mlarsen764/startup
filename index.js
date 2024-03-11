@@ -14,6 +14,23 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// Form Retrieval
+app.get('/entries', (req, res) => {
+    const mockEntries = [
+        {
+            id: 1,
+            topic: "Atonement of Jesus Christ",
+            reference: "stuff",
+            details: "more stuff",
+            insights: "yeah",
+            author: "me",
+            anonymous: true
+        }
+    ];
+
+    res.json(mockEntries);
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
