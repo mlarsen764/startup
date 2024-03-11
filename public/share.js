@@ -6,28 +6,41 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Gather form data
       const formData = new FormData(form);
-      const displayOption = formData.get('option');
       let username = 'Anonymous';
       
-      if(displayOption === "display username") {
+      if(formData.get('option') === "display username") {
         // Only set the username if the user opted to display it
         username = localStorage.getItem('userName') || 'Anonymous';
       }
       
       const entryData = {
         topic: formData.get('topics'),
-        scriptureReference: document.querySelector('.reference').value,
-        scriptureDetails: document.querySelectorAll('textarea')[1].value,
-        scriptureInsights: document.querySelectorAll('textarea')[2].value,
-        displayOption: displayOption,
-        username: username
+        reference: document.querySelector('.reference').value,
+        scripture: document.querySelectorAll('textarea')[1].value,
+        insights: document.querySelectorAll('textarea')[2].value,
+        author: username,
+        anonymous: formData.get('option') === "remain anonymous"
       };
       
       // Placeholder for sending data to a server
-      console.log('Entry to be submitted:', entryData);
+      fetch('/api/entries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(entryData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        alert('Entry submitted successfully!');
+        form.reset();
+      })
+      .catch((error) => {
+        console.error('Error: ', error);
+        alert('Error submitting entry.');
+      });
 
-      form.reset();
       
-      alert('Entry submitted! (not really, but when connected to a database it will be!!)');
     });
   });
