@@ -17,6 +17,36 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   document.getElementById('userNameDisplay').textContent = getUserName();
 
+  // Fetch entries
+  fetch('/api/entries')
+    .then(response => response.json())
+    .then(entries => {
+      displayEntries(entries);
+    })
+    .catch(error => console.error('Error fetching entries: ', error));
+
+  function displayEntries(entries) {
+    entries.forEach(entry => {
+      const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
+      const topicElement = document.getElementById(topicId);
+      if (topicElement) {
+        const entryElement = document.createElement('div');
+        entryElement.className = 'entry';
+        entryElement.innerHTML = `
+          <strong>Reference:</strong> ${entry.reference}<br>
+          <strong>Details:</strong> ${entry.details}<br>
+          <strong>Insights:</strong> ${entry.insights}<br>
+          <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
+          <hr>
+        `;
+        topicElement.appendChild(entryElement);
+      } 
+    });
+  }
+
+
+
+
 //   // Hypothetical function to update the page with a new entry
 //   function addEntry(data) {
 //     // Assuming `data` contains topic, reference, details, insights, and optionally username
