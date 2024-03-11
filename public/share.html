@@ -27,7 +27,8 @@
     <main id="share">
       <form>
         <label for="Gospel Topics">Select a topic:</label>
-        <select name="topics" id="topics">
+        <select name="topics" id="topics" required>
+          <option value="">Please select a topic</option>
           <option value="Atonement of Jesus Christ">Atonement of Jesus Christ</option>
           <option value="Gospel of Jesus Christ">Gospel of Jesus Christ</option>
           <option value="Teachings of Jesus Christ">Teachings of Jesus Christ</option>
@@ -37,16 +38,16 @@
           <option value="Charity">Charity</option>
         </select>
         <p>Scripture Reference: Book, chapter, verse(s) (e.g. Isaiah 53:3-5)</p>
-        <textarea class="reference" placeholder = "enter scripture reference"></textarea>
+        <textarea class="reference" placeholder = "enter scripture reference" required></textarea>
         <p>Scripture Details: Write the scripture, part of the scripture, or paraphrase!</p>
-        <textarea placeholder = "enter scripture details"></textarea>
+        <textarea placeholder = "enter scripture details" required></textarea>
         <p>Scripture Insights: Why is this scripture important to you?</p>
-        <textarea placeholder = "enter scripture insights"></textarea>
+        <textarea placeholder = "enter scripture insights" required></textarea>
         </br>
         <div class="radio-container">
-          <input type="radio" id="username" name="option" value="display username">
+          <input type="radio" id="username" name="option" value="display username" required>
           <label for="username">Display Username</label>
-          <input type="radio" id="anonymous" name="option" value="remain anonymous">
+          <input type="radio" id="anonymous" name="option" value="remain anonymous" required>
           <label for="anonymous">Remain Anonymous</label>
         </div>
           <button type="submit">Submit Entry</button>
