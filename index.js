@@ -15,7 +15,7 @@ const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // Form Retrieval
-app.get('/entries', (req, res) => {
+apiRouter.get('/entries', (req, res) => {
     const mockEntries = [
         {
             id: 1,
