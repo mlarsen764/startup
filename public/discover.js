@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const entryElement = document.createElement('div');
         entryElement.className = 'entry';
         entryElement.innerHTML = `
-          <strong>Reference:</strong> ${entry.reference}<br>
+          <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
+          <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
           <strong>Details:</strong> ${entry.details}<br>
           <strong>Insights:</strong> ${entry.insights}<br>
-          <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
           <hr>
         `;
         topicElement.appendChild(entryElement);
