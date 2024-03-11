@@ -4,9 +4,22 @@
 
 # Scripture Insights
 
+### Startup Service
+
+- [x] - done - Prerequisite: Simon Service deployed to production environment
+- [x] - done - Prerequisite: A link to GitHub startup repository prominently displayed on application's home page
+- [x] - done - Prerequisite: Notes in startup Git repository README.md file
+- [x] - done - Prerequisite: At least 10 git commits spread consistently throughout the assignment period
+- [x] - done - Created an HTTP service using Node.js and Express
+- [x] - done - Frontend served up using Express static middleware
+- [x] - done - Third party service endpoints: inspirational quotes on main page
+- [x] - done - Backend provides service endpoints: endpoints for retrieving and submitting user entries
+- [x] - done - Frontend calls service endpoints: above endpoints for entries
+
+
 ### Javascript Deliverables
 
-- [x] - done - Prerequisite: Simon CSS deployed to your production environment
+- [x] - done - Prerequisite: Simon Javascript deployed to your production environment
 - [x] - done - Prerequisite: A link to your GitHub startup repository prominently displayed on your application's home page
 - [x] - done - Prerequisite: Notes in your startup Git repository README.md file
 - [x] - done - Added Javascript support for future login with username and password
