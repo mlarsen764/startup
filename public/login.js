@@ -5,6 +5,15 @@ document.addEventListener("DOMContentLoaded", function() {
             login();
         }
     });
+
+    fetch('https://api.quotable.io/random')
+    .then(response => response.json())
+    .then(data => {
+        const quote = data.content;
+        const author = data.author;
+        document.getElementById('quote').innerHTML = `"${quote}" - ${author}`;
+    })
+    .catch(error => console.error('Error:', error));
 });
 
 function login() {
