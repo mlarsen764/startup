@@ -14,21 +14,25 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+let entries = [];
+
+apiRouter.post('/entries', (req, res) => {
+    try {
+        const newEntry = {
+            id: entries.length + 1,
+            ...req.body,
+            dateAdded: new Date()
+        };
+        entries.push(newEntry);
+        res.status(201).send(newEntry);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+});
+
 // Form Retrieval
 apiRouter.get('/entries', (req, res) => {
-    const mockEntries = [
-        {
-            id: 1,
-            topic: "Atonement of Jesus Christ",
-            reference: "stuff",
-            scripture: "more stuff",
-            insights: "yeah",
-            author: "me",
-            anonymous: true
-        }
-    ];
-
-    res.json(mockEntries);
+    res.json(entries);
 });
 
 app.listen(port, () => {
