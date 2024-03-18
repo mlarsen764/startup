@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mlarsen764/startup#readme",
   "dependencies": {
-    "express": "^4.18.3"
+    "express": "^4.18.3",
+    "mongodb": "^6.5.0"
   }
 }
