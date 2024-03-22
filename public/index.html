@@ -26,12 +26,14 @@
 
     <main id="login">
       <h1>ScripSights Login</h1>
-      <form method="get" action="discover.html">
+      <form>
         <label for="username">Username</label>
-        <input type="text" id="name" placeholder="enter username" />
+        <input type="text" id="userName" placeholder="enter username" />
         <label for ="password">Password</label>
-        <input type="text" id ="password" placeholder="enter password" />
-        <button type="button" onclick="login()">Login</button>
+        <input type="password" id ="userPassword" placeholder="enter password" />
+        <button type="button" onclick="loginUser()">Login</button>
+      </br>
+        <button type="button" onclick="createUser()">Create User</button>
       </form>
     </main>
 
