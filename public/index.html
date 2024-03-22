@@ -7,7 +7,6 @@
     <title>ScripSights Login</title>
     <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="main.css" />
-    <script src="login.js"></script>
   </head>
   <body>
     <!-- Use header, main, and footer elements to give semantic structure -->
@@ -24,15 +23,20 @@
     </header>
 
     <main id="login">
-      <h1>ScripSights Login</h1>
-      <div id="loginForm" class="userForm">
-        <label for="username">Username</label>
+      <h1>Welcome to Scripsights</h1>
+      <div id="loginForm" class="userForm" style="display: none">
         <input type="text" id="userName" placeholder="enter username" />
-        <label for ="password">Password</label>
         <input type="password" id ="userPassword" placeholder="enter password" />
         <button type="button" onclick="loginUser()">Login</button>
-      </br>
+        </br>
         <button type="button" onclick="createUser()">Create User</button>
+      </div>
+      <div id="logoutForm" class ="userForm" style="display: none">
+        <button type="button" onclick="discover()">Discover</button>
+        </br>
+        <button type="button" onclick="share()">Share</button>
+        </br>
+        <button type="button" onclick="logout()">Logout</button>
       </div>
     </main>
 
@@ -41,5 +45,6 @@
       <span class="text-reset">Author Name</span>
       <p>Matt Larsen</p>
     </footer>
+    <script src="login.js"></script>
   </body>
 </html>

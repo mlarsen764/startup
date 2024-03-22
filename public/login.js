@@ -16,12 +16,16 @@ document.addEventListener("DOMContentLoaded", function() {
     .catch(error => console.error('Error:', error));
 });
 
-// function login() {
-//     const nameEl = document.getElementById("name");
-//     const passwordEl = document.getElementById("password")
-//     localStorage.setItem("userName", nameEl.value);
-//     window.location.href = "discover.html";
-//   }
+(async () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('logoutForm').style.display = 'block';
+    } else {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('logoutForm').style.display = 'none';
+    }
+})();
 
 async function loginUser() {
     loginOrCreate(`/api/auth/login`);
@@ -57,6 +61,10 @@ async function loginOrCreate(endpoint) {
 function share() {
     window.location.href = 'share.html';
 }
+
+function discover() {
+    window.location.href = 'discover.html';
+}
   
 function logout() {
     localStorage.removeItem('userName');
@@ -73,11 +81,3 @@ async function getUser(email) {
     }
     return null;
 }
-  
-function setDisplay(controlId, display) {
-    const shareControlEl = document.querySelector(`#${controlId}`);
-    if (shareControlEl) {
-      shareControlEl.style.display = display;
-    }
-}
-  
