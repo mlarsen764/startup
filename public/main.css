@@ -52,7 +52,7 @@ nav div a:hover {
     border-radius: 5px; 
 }
 
-form {
+.userForm {
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -60,18 +60,13 @@ form {
     border-radius: 8px;
 }
 
-#login form {
-    max-width: 400px;
-
-}
-
-form label {
+.userForm label {
     display: block;
     margin-bottom: 5px;
 }
 
-form input[type="text"],
-form input[type="password"] {
+.userForm input[type="text"],
+.userForm input[type="password"] {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 20px;
@@ -80,7 +75,7 @@ form input[type="password"] {
     box-sizing: border-box; /* Added for box sizing */
 }
 
-form button {
+.userForm button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -91,8 +86,12 @@ form button {
     cursor: pointer;
 }
 
-form button:hover {
+.userForm button:hover {
     background-color: #034f6d;
+}
+
+#loginForm {
+    max-width: 400px;
 }
 
 footer {
