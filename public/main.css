@@ -90,7 +90,7 @@ nav div a:hover {
     background-color: #034f6d;
 }
 
-#loginForm {
+#loginForm, #logoutForm {
     max-width: 400px;
 }
 
