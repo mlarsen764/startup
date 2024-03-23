@@ -4,6 +4,18 @@
 
 # Scripture Insights
 
+### Startup Login
+
+- [x] - done - Prerequisite: Simon Login deployed to production environment
+- [x] - done - Prerequisite: A link to GitHub startup repository prominently displayed on application's home page
+- [x] - done - Prerequisite: Notes in startup Git repository README.md file
+- [x] - done - Prerequisite: At least 10 git commits spread consistently throughout the assignment period
+- [x] - done - Supports new user registration
+- [x] - done - Supports existing user authentication
+- [x] - done - Stores application data in MongoDB - entries made by users are stored in database
+- [x] - done - Stores and retrieves credentials in MongoDB
+- [x] - done - Restricts application functionality based upon authentication - must be logged in to go to share page
+
 ### Startup Service
 
 - [x] - done - Prerequisite: Simon Service deployed to production environment
