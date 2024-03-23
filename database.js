@@ -7,6 +7,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('scripsights')
 const userCollection = db.collection('user');
+const entriesCollection = db.collection('entries');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -39,8 +40,13 @@ async function createUser(email, password) {
     return user;
 }
 
+function addEntry(entry) {
+    return entriesCollection.insertOne(entry);
+}
+
 module.exports = {
     getUser,
     getUserByToken,
     createUser,
+    addEntry,
 };
