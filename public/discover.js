@@ -45,51 +45,50 @@ document.addEventListener("DOMContentLoaded", function() {
       displayEntries(entries);
     })
     .catch(error => console.error('Error fetching entries: ', error));
-
-  function displayEntries(entries) {
-    entries.forEach(entry => {
-      const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
-      const topicElement = document.getElementById(topicId);
-      if (topicElement) {
-        const entryElement = document.createElement('div');
-        entryElement.className = 'entry';
-        entryElement.innerHTML = `
-          <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
-          <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
-          <strong>Scripture:</strong> ${entry.scripture}<br>
-          <strong>Insights:</strong> ${entry.insights}<br>
-          <hr>
-        `;
-        topicElement.appendChild(entryElement);
-      } 
-    });
-  }
-
-
-
-
-//   // Hypothetical function to update the page with a new entry
-//   function addEntry(data) {
-//     // Assuming `data` contains topic, reference, details, insights, and optionally username
-//     const { topic, reference, details, insights, username } = data;
-
-//     // Find the corresponding topic section
-//     const topicSection = document.querySelector(`.collapsible-header[data-topic="${topic}"]`);
-//     if (topicSection) {
-//       let contentSection = topicSection.nextElementSibling;
-//       if (contentSection && contentSection.classList.contains('collapsible-content')) {
-//         // Create a new list item or div to hold the submission
-//         const entryElement = document.createElement('li');
-//         entryElement.textContent = `${reference} - ${details} (${username || 'Anonymous'}) - ${insights}`;
-//         if (!contentSection.querySelector('ul')) {
-//           // If there's no list, create one
-//           const newList = document.createElement('ul');
-//           contentSection.appendChild(newList);
-//           contentSection = newList; // Update reference to insert correctly
-//         }
-//         contentSection.appendChild(entryElement);
-//       }
-//     }
-//   }
 });
+
+function displayEntries(entries) {
+  entries.forEach(entry => {
+    const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
+    const topicElement = document.getElementById(topicId);
+    if (topicElement) {
+      const entryElement = document.createElement('div');
+      entryElement.className = 'entry';
+      entryElement.innerHTML = `
+        <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
+        <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
+        <strong>Scripture:</strong> ${entry.scripture}<br>
+        <strong>Insights:</strong> ${entry.insights}<br>
+        <button class="delete-entry-button" data-entry-id="${entry.id}">Delete Entry</button>
+        <hr>
+      `;
+      topicElement.appendChild(entryElement);
+    } 
+  });
+  const deleteButtons = document.querySelectorAll('.delete-entry-button');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const entryId = this.getAttribute('data-entry-id');
+      deleteEntry(entryId);
+    });
+  });
+}
+
+function deleteEntry(entryId) {
+  fetch(`/api/entries/${entryId}`, {
+      method: 'DELETE',
+  })
+  .then(response => {
+      if(response.ok) {
+          alert('Entry deleted successfully!');
+          location.reload()
+      } else {
+          alert('Error deleting entry.');
+      }
+  })
+  .catch((error) => {
+      console.error('Error:', error);
+      alert('Error deleting entry.');
+  });
+}
 

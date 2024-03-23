@@ -113,6 +113,17 @@ apiRouter.get('/entries', (req, res) => {
     res.json(entries);
 });
 
+apiRouter.delete('/entries/:id', (req, res) => {
+    const { id } = req.params;
+    const entryIndex = entries.findIndex(entry => entry.id === parseInt(id));
+    if (entryIndex > -1) {
+        entries.splice(entryIndex, 1);
+        res.status(200).send({ msg: 'Entry deleted successfully' });
+    } else {
+        res.status(404).send({ msg: 'Entry not found' });
+    }
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });

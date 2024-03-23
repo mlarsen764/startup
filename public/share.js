@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         anonymous: formData.get('option') === "remain anonymous"
       };
       
-      // Placeholder for sending data to a server
       fetch('/api/entries', {
         method: 'POST',
         headers: {
