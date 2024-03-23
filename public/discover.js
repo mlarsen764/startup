@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
+  
+  const shareLink = document.getElementById('shareLink');
+    shareLink.addEventListener('click', async function(event) {
+        event.preventDefault(); // Always prevent default first
+        
+        try {
+            const response = await fetch(`/api/auth/check`);
+            const data = await response.json();
+            
+            if (data.authenticated) {
+                window.location.href = 'share.html'; // Redirect if authenticated
+            } else {
+                alert('Please log in to share content.'); // Show an alert before redirecting
+                window.location.href = 'index.html'; // Redirect to login page if not authenticated
+            }
+        } catch (error) {
+            console.error('Authentication check failed:', error);
+            // Handle error (maybe redirect to an error page or display a message)
+        }
+    });
+  
   var collapsibleHeaders = document.querySelectorAll('.collapsible-header');
   collapsibleHeaders.forEach(function(header) {
     // Click to expand collapsible header

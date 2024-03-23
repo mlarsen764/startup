@@ -82,6 +82,16 @@ secureApiRouter.use(async (req, res, next) => {
     }
 });
 
+apiRouter.get('/auth/check', async (req, res) => {
+    const authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        res.send({ authenticated: true });
+    } else {
+        res.send({ authenticated: false });
+    }
+});
+
 let entries = [];
 
 apiRouter.post('/entries', (req, res) => {
