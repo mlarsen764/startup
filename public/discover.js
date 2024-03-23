@@ -48,22 +48,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function displayEntries(entries) {
+  const currentUserName = localStorage.getItem('userName');
   entries.forEach(entry => {
     const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
     const topicElement = document.getElementById(topicId);
     if (topicElement) {
       const entryElement = document.createElement('div');
       entryElement.className = 'entry';
-      entryElement.innerHTML = `
+      let entryHTML = `
         <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
         <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
         <strong>Scripture:</strong> ${entry.scripture}<br>
         <strong>Insights:</strong> ${entry.insights}<br>
-        <button class="delete-entry-button" data-entry-id="${entry.id}">Delete Entry</button>
-        <hr>
       `;
+
+      if (currentUserName === 'mlarsen64') {
+        entryHTML += `<button class="delete-entry-button" data-entry-id="${entry.id}">Delete Entry</button>`;
+      }
+
+      entryHTML += `<hr>`;
+      entryElement.innerHTML = entryHTML;
       topicElement.appendChild(entryElement);
-    } 
+    }
   });
   const deleteButtons = document.querySelectorAll('.delete-entry-button');
   deleteButtons.forEach(button => {
