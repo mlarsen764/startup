@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const config = require('./dbConfig.json');
@@ -44,9 +44,19 @@ function addEntry(entry) {
     return entriesCollection.insertOne(entry);
 }
 
+async function getEntries() {
+    return entriesCollection.find({}).toArray();
+}
+
+async function deleteEntry(id) {
+    return entriesCollection.deleteOne({ _id: new ObjectId(id) });
+}
+
 module.exports = {
     getUser,
     getUserByToken,
     createUser,
     addEntry,
+    getEntries,
+    deleteEntry,
 };

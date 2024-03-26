@@ -94,34 +94,42 @@ apiRouter.get('/auth/check', async (req, res) => {
 
 let entries = [];
 
-apiRouter.post('/entries', (req, res) => {
+apiRouter.post('/entries', async (req, res) => {
     try {
         const newEntry = {
             id: entries.length + 1,
             ...req.body,
             dateAdded: new Date()
         };
-        entries.push(newEntry);
-        res.status(201).send(newEntry);
+        const result = await DB.addEntry(newEntry);
+        res.status(201).send({ ...newEntry, _id: result.insertedId });
     } catch (error) {
         res.status(400).send(error.message);
     }
 });
 
 // Form Retrieval
-apiRouter.get('/entries', (req, res) => {
-    res.json(entries);
+apiRouter.get('/entries', async (req, res) => {
+    try {
+        const entries = await DB.getEntries();
+        res.json(entries);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 
-apiRouter.delete('/entries/:id', (req, res) => {
-    const { id } = req.params;
-    const entryIndex = entries.findIndex(entry => entry.id === parseInt(id));
-    if (entryIndex > -1) {
-        entries.splice(entryIndex, 1);
+apiRouter.delete('/entries/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await DB.deleteEntry(id);
+        if (result.deletedCount === 0) {
+            return res.status(404).send({ msg: 'Entry not found' });
+        }
         res.status(200).send({ msg: 'Entry deleted successfully' });
-    } else {
-        res.status(404).send({ msg: 'Entry not found' });
+    } catch (error) {
+        res.status(500).send(error.message);
     }
+
 });
 
 // Default error handler
