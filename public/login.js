@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     const shareLink = document.getElementById('shareLink');
     shareLink.addEventListener('click', async function(event) {
         event.preventDefault(); // Always prevent default first
@@ -34,18 +34,28 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('quote').innerHTML = `"${quote}" - ${author}`;
     })
     .catch(error => console.error('Error:', error));
+
+    await validateSessionAndUpdateUI();
 });
 
-(async () => {
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('logoutForm').style.display = 'block';
-    } else {
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('logoutForm').style.display = 'none';
+async function validateSessionAndUpdateUI() {
+    try {
+        const response = await fetch(`/api/auth/check`);
+        const data = await response.json();
+        if (data.authenticated) {
+            // User is authenticated
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('logoutForm').style.display = 'block';
+        } else {
+            // User is not authenticated
+            localStorage.removeItem('userName');
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('logoutForm').style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error validating session:', error);
     }
-})();
+}
 
 async function loginUser() {
     loginOrCreate(`/api/auth/login`);
