@@ -22,7 +22,7 @@ function peerProxy(httpServer) {
     // Forward messages to everyone except the sender
     ws.on('message', function message(data) {
       connections.forEach((c) => {
-        if (c.id !== connection.id) {
+        if (c.ws.readyState === WebSocket.OPEN) {
           c.ws.send(data);
         }
       });
@@ -42,6 +42,8 @@ function peerProxy(httpServer) {
       connection.alive = true;
     });
   });
+
+  
 
   // Keep active connections alive
   setInterval(() => {
