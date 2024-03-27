@@ -40,37 +40,40 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('userNameDisplay').textContent = getUserName();
 });
 
-function fetchAndDisplayEntries(entries) {
+function fetchAndDisplayEntries() {
   // Fetch entries
   fetch('/api/entries')
     .then(response => response.json())
-    .then(entries => {
-      displayEntries(entries);
+    .then(entries => { // This 'entries' comes from the fetch call's response
+      const currentUserName = localStorage.getItem('userName');
+      entries.forEach(entry => {
+        const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
+        const topicElement = document.getElementById(topicId);
+        if (topicElement) {
+          const entryElement = document.createElement('div');
+          entryElement.className = 'entry';
+          let entryHTML = `
+            <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
+            <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
+            <strong>Scripture:</strong> ${entry.scripture}<br>
+            <strong>Insights:</strong> ${entry.insights}<br>
+          `;
+
+          if (currentUserName === 'mlarsen64') {
+            entryHTML += `<button class="delete-entry-button" data-entry-id="${entry.id}">Delete Entry</button>`;
+          }
+
+          entryHTML += `<hr>`;
+          entryElement.innerHTML = entryHTML;
+          topicElement.appendChild(entryElement);
+        }
+      });
+      attachDeleteEntryEventListeners(); // Separated logic for attaching event listeners
     })
     .catch(error => console.error('Error fetching entries: ', error));
-  const currentUserName = localStorage.getItem('userName');
-  entries.forEach(entry => {
-    const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
-    const topicElement = document.getElementById(topicId);
-    if (topicElement) {
-      const entryElement = document.createElement('div');
-      entryElement.className = 'entry';
-      let entryHTML = `
-        <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
-        <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
-        <strong>Scripture:</strong> ${entry.scripture}<br>
-        <strong>Insights:</strong> ${entry.insights}<br>
-      `;
+}
 
-      if (currentUserName === 'mlarsen64') {
-        entryHTML += `<button class="delete-entry-button" data-entry-id="${entry.id}">Delete Entry</button>`;
-      }
-
-      entryHTML += `<hr>`;
-      entryElement.innerHTML = entryHTML;
-      topicElement.appendChild(entryElement);
-    }
-  });
+function attachDeleteEntryEventListeners() {
   const deleteButtons = document.querySelectorAll('.delete-entry-button');
   deleteButtons.forEach(button => {
     button.addEventListener('click', function() {
