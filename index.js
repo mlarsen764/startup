@@ -93,17 +93,15 @@ apiRouter.get('/auth/check', async (req, res) => {
     }
 });
 
-let entries = [];
-
 apiRouter.post('/entries', async (req, res) => {
     try {
         const newEntry = {
-            id: entries.length + 1,
             ...req.body,
             dateAdded: new Date()
         };
         const result = await DB.addEntry(newEntry);
-        res.status(201).send({ ...newEntry, _id: result.insertedId });
+        wsProxy.broadcastMessage(JSON.stringify({ action: 'newEntry', data: newEntry }));
+        res.status(201).send({ result });
     } catch (error) {
         res.status(400).send(error.message);
     }
