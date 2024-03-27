@@ -21,11 +21,21 @@ function peerProxy(httpServer) {
 
     // Forward messages to everyone except the sender
     ws.on('message', function message(data) {
-      connections.forEach((c) => {
-        if (c.ws.readyState === WebSocket.OPEN) {
-          c.ws.send(data);
-        }
-      });
+      const parsedData = JSON.parse(data);
+      // Assuming 'action' is 'newEntry' and 'topic' contains the topic of the new entry
+      if (parsedData.action === 'newEntry') {
+        const broadcastData = JSON.stringify({
+        action: 'newEntry',
+        topic: parsedData.topic,
+        data: 'An entry has been added for ' + parsedData.topic
+        });
+      
+        connections.forEach((c) => {
+          if (c.ws.readyState === WebSocket.OPEN) {
+            c.ws.send(broadcastData);
+          }
+        });
+      }
     });
 
     // Remove the closed connection so we don't try to forward anymore

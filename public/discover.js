@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-  
+  configureWebSocket();
+  fetchAndDisplayEntries();
   const shareLink = document.getElementById('shareLink');
     shareLink.addEventListener('click', async function(event) {
         event.preventDefault(); // Always prevent default first
@@ -37,7 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
     return localStorage.getItem('userName') ?? 'Guest';
   }
   document.getElementById('userNameDisplay').textContent = getUserName();
+});
 
+function fetchAndDisplayEntries(entries) {
   // Fetch entries
   fetch('/api/entries')
     .then(response => response.json())
@@ -45,9 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
       displayEntries(entries);
     })
     .catch(error => console.error('Error fetching entries: ', error));
-});
-
-function displayEntries(entries) {
   const currentUserName = localStorage.getItem('userName');
   entries.forEach(entry => {
     const topicId = `content-${entry.topic.replace(/\s+/g, '_')}`;
@@ -98,3 +98,21 @@ function deleteEntry(entryId) {
   });
 }
 
+function configureWebSocket() {
+  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+  socket.onopen = (event) => {
+    console.log('Connected to WebSocket server');
+  };
+  socket.onclose = (event) => {
+    console.log('Disconnected from WebSocket server');
+  };
+  socket.onmessage = async (event) => {
+    const msg = JSON.parse(await event.data.text());
+    if (msg.type === 'newEntryAdded') {
+      // Refresh the entries or notify the user
+      alert(`New entry added for topic: ${msg.value.topic}`);
+      fetchAndDisplayEntries(); // Make sure you have this function to fetch and display entries
+    }
+  };
+}
