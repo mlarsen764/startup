@@ -103,7 +103,7 @@ apiRouter.post('/entries', async (req, res) => {
         };
         const result = await DB.addEntry(newEntry);
         try {
-            wsProxy.message(JSON.stringify({ action: 'newEntry', data: newEntry }));
+            broadcastNewEntry(newEntry.topic);
         } catch (error) {
             console.error("Error sending WebSocket message:", error);
         }
@@ -165,4 +165,4 @@ const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
   
-peerProxy(httpService);
+const { broadcastNewEntry } = peerProxy(httpService);

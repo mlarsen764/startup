@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .then(data => {
         console.log('Success:', data);
-        alert('Entry submitted successfully!');
+        // alert('Entry submitted successfully!');
         form.reset();
       })
       .catch((error) => {
@@ -51,20 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  function configureWebSocket() {
-    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    socket.onopen = (event) => {
-      console.log('Connected to WebSocket server');
-    };
-    socket.onclose = (event) => {
-      console.log('Disconnected from WebSocket server');
-    };
-    socket.onmessage = async (event) => {
-      const msg = JSON.parse(await event.data.text());
-      if (msg.action === 'newEntry') {
-        // Refresh the entries or notify the user
-        alert(`New entry added for topic: ${msg.value.topic}`);
-      }
-    };
-  }
+function configureWebSocket() {
+  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+  socket.onopen = (event) => {
+    console.log('Connected to WebSocket server');
+  };
+  socket.onmessage = (event) => {
+    // Assuming the server sends a JSON string that we need to parse
+    const data = JSON.parse(event.data);
+    // Check if the action of the received message is 'newEntry'
+    if (data.action === 'newEntry') {
+      // Display an alert to the user about the new entry
+      alert(`${data.data}`);
+    }
+  };
+  socket.onclose = (event) => {
+    console.log('Disconnected from WebSocket server');
+  };
+}
