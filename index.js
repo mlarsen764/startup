@@ -1,6 +1,7 @@
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt')
 const express = require('express');
+const { ObjectId } = require('mongodb');
 const app = express();
 const DB = require('./database.js')
 const { peerProxy } = require('./peerProxy.js')
@@ -100,7 +101,7 @@ apiRouter.post('/entries', async (req, res) => {
             dateAdded: new Date()
         };
         const result = await DB.addEntry(newEntry);
-        wsProxy.broadcastMessage(JSON.stringify({ action: 'newEntry', data: newEntry }));
+        wsProxy.message(JSON.stringify({ action: 'newEntry', data: newEntry }));
         res.status(201).send({ result });
     } catch (error) {
         res.status(400).send(error.message);
@@ -120,12 +121,16 @@ apiRouter.get('/entries', async (req, res) => {
 apiRouter.delete('/entries/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        if (!ObjectId.isValid(req.params.id)) {
+            return res.status(400).send({ msg: 'Invalid ID format' });
+        }
         const result = await DB.deleteEntry(id);
         if (result.deletedCount === 0) {
             return res.status(404).send({ msg: 'Entry not found' });
         }
         res.status(200).send({ msg: 'Entry deleted successfully' });
     } catch (error) {
+        console.error(error);
         res.status(500).send(error.message);
     }
 

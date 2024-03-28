@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    configureWebSocket()
     const form = document.querySelector('main#share form');
     
     form.addEventListener('submit', function(event) {
@@ -29,7 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         body: JSON.stringify(entryData),
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          // If the server response is not OK, throw an error to be caught by the catch block
+          throw new Error('Network response was not ok.');
+        }
+        return response.json();
+      })
       .then(data => {
         console.log('Success:', data);
         alert('Entry submitted successfully!');
@@ -43,3 +50,21 @@ document.addEventListener('DOMContentLoaded', function() {
       
     });
   });
+
+  function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onopen = (event) => {
+      console.log('Connected to WebSocket server');
+    };
+    socket.onclose = (event) => {
+      console.log('Disconnected from WebSocket server');
+    };
+    socket.onmessage = async (event) => {
+      const msg = JSON.parse(await event.data.text());
+      if (msg.action === 'newEntry') {
+        // Refresh the entries or notify the user
+        alert(`New entry added for topic: ${msg.value.topic}`);
+      }
+    };
+  }

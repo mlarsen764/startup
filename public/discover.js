@@ -60,7 +60,7 @@ function fetchAndDisplayEntries() {
           `;
 
           if (currentUserName === 'mlarsen64') {
-            entryHTML += `<button class="delete-entry-button" data-entry-id="${entry.id}">Delete Entry</button>`;
+            entryHTML += `<button class="delete-entry-button" data-entry-id="${entry._id}">Delete Entry</button>`;
           }
 
           entryHTML += `<hr>`;
@@ -112,10 +112,10 @@ function configureWebSocket() {
   };
   socket.onmessage = async (event) => {
     const msg = JSON.parse(await event.data.text());
-    if (msg.type === 'newEntryAdded') {
+    if (msg.action === 'newEntry') {
       // Refresh the entries or notify the user
       alert(`New entry added for topic: ${msg.value.topic}`);
-      fetchAndDisplayEntries(); // Make sure you have this function to fetch and display entries
+      fetchAndDisplayEntries();
     }
   };
 }
