@@ -95,15 +95,21 @@ apiRouter.get('/auth/check', async (req, res) => {
 });
 
 apiRouter.post('/entries', async (req, res) => {
+    console.log(req.body);
     try {
         const newEntry = {
             ...req.body,
             dateAdded: new Date()
         };
         const result = await DB.addEntry(newEntry);
-        wsProxy.message(JSON.stringify({ action: 'newEntry', data: newEntry }));
+        try {
+            wsProxy.message(JSON.stringify({ action: 'newEntry', data: newEntry }));
+        } catch (error) {
+            console.error("Error sending WebSocket message:", error);
+        }
         res.status(201).send({ result });
     } catch (error) {
+        console.log("Error adding entry:", error);
         res.status(400).send(error.message);
     }
 });

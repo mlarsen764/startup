@@ -67,6 +67,26 @@ function peerProxy(httpServer) {
       }
     });
   }, 10000);
+
+  // Broadcast function to be called externally
+  function broadcastNewEntry(topic) {
+    const broadcastData = JSON.stringify({
+      action: 'newEntry',
+      topic: topic,
+      data: `An entry has been added for ${topic}`,
+    });
+
+    connections.forEach(c => {
+      if (c.ws.readyState === WebSocket.OPEN) {
+        c.ws.send(broadcastData);
+      }
+    });
+  }
+
+  // Return the broadcast function so it can be used outside
+  return {
+    broadcastNewEntry,
+  };
 }
 
 module.exports = { peerProxy };
