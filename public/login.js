@@ -111,3 +111,27 @@ async function getUser(email) {
     }
     return null;
 }
+
+function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onopen = (event) => {
+      console.log('Connected to WebSocket server');
+    };
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      // Check if the action of the received message is 'newEntry'
+      if (data.action === 'newEntry') {
+        const notification = document.getElementById('notification');
+        notification.textContent = `${data.data}`;
+        notification.classList.remove('hidden');
+  
+        setTimeout(() => {
+          notification.classList.add('hidden')
+        }, 4000);
+      }
+    };
+    socket.onclose = (event) => {
+      console.log('Disconnected from WebSocket server');
+    };
+  }
