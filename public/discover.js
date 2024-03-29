@@ -55,7 +55,7 @@ function fetchAndDisplayEntries() {
           let entryHTML = `
             <strong>Reference:</strong> ${entry.reference} <span class="entry-separator">-</span> 
             <strong>Author:</strong> ${entry.anonymous ? 'Anonymous' : entry.author}<br>
-            <strong>Scripture:</strong> ${entry.scripture}<br>
+            <strong>Scripture:</strong> ${entry.scripture}<br></br>
             <strong>Insights:</strong> ${entry.insights}<br>
           `;
 
