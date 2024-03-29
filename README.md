@@ -4,6 +4,17 @@
 
 # Scripture Insights
 
+### Startup Websocket
+
+- [x] - done - Prerequisite: Simon Websocket deployed to production environment
+- [x] - done - Prerequisite: A link to GitHub startup repository prominently displayed on application's home page
+- [x] - done - Prerequisite: Notes in startup Git repository README.md file
+- [x] - done - Prerequisite: At least 10 git commits spread consistently throughout the assignment period
+- [x] - done - Backend listens for WebSocket connection
+- [x] - done - Frontend makes WebSocket connection
+- [x] - done - Data sent over WebSocket connection - entry data, specifically the entry topic, is sent to be displayed to client
+- [x] - done - WebSocket data displayed in the application interface - notification on discover and share pages when an entry is added
+
 ### Startup Login
 
 - [x] - done - Prerequisite: Simon Login deployed to production environment
