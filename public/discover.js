@@ -108,12 +108,16 @@ function configureWebSocket() {
     console.log('Connected to WebSocket server');
   };
   socket.onmessage = (event) => {
-    // Assuming the server sends a JSON string that we need to parse
     const data = JSON.parse(event.data);
     // Check if the action of the received message is 'newEntry'
     if (data.action === 'newEntry') {
-      // Display an alert to the user about the new entry
-      alert(`A new entry has been added for ${data.topic}: ${data.data}`);
+      const notification = document.getElementById('notification');
+      notification.textContent = `${data.data}`;
+      notification.classList.remove('hidden');
+
+      setTimeout(() => {
+        notification.classList.add('hidden')
+      }, 4000);
     }
   };
   socket.onclose = (event) => {
